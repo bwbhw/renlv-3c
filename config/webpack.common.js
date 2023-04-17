@@ -1,0 +1,71 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const paths = require('./paths')
+module.exports = {
+  entry: {
+    index: './src/index.tsx',
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'release_V0',
+      template: paths.appHtml, //HTML模板文件
+      favicon: paths.resolveApp("public/favicon.ico"),//收藏夹图标
+      manifest: paths.resolveApp("public/manifest.json"),
+    }), //生成html，自动引入所有bundle
+  ],
+  resolve: {
+    extensions: [".tsx",".ts",".js"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|ts|jsx|tsx)$/,
+        include: paths.appSrc,
+        use: [
+            {
+                loader: "esbuild-loader",
+                options: {
+                    loader: "tsx",
+                    target: "es2015",
+                },
+            }
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        include: paths.appSrc,
+        type: 'asset/resource',
+      },
+      {
+        test: /.(woff|woff2|eot|ttf|otf)$/i,
+        include: [paths.appSrc],
+        type: 'asset/resource',
+      },
+      {
+        test: /\.css$/,
+        include: paths.appSrc,
+        use: [
+          'style-loader', //将JS字符串生成为style节点
+          'css-loader', //将CSS转化为CommonJS模块
+        ],
+      },
+      {
+        test: /.(scss|sass)$/,
+        include: paths.appSrc,
+        use: [
+          'style-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  'postcss-preset-env', // postcss-preset-env 包含autoprefixer
+                ],
+              },
+            },
+          },
+          'sass-loader',
+        ],
+      },
+    ],
+  },
+}

@@ -1,0 +1,63 @@
+{
+  "name": "green-time",
+  "version": "1.0.0",
+  "description": "这是一个个人养成记录工具",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack serve --open --config config/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
+    "lint": "eslint --ext .tsx,.ts,.js --fix ./src",
+    "fix": "prettier --write ./src"
+  },
+  "husky": {
+    "hooks": {
+        "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*{.ts,.js}": [
+        "eslint --ext .tsx,.ts --fix ./src",
+        "prettier --write",
+        "git add"
+    ]
+  },
+  "keywords": [
+    "green-time"
+  ],
+  "author": "renlv",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.3",
+    "esbuild-loader": "^3.0.1",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "html-webpack-plugin": "^5.5.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "postcss": "^8.4.22",
+    "postcss-loader": "^7.2.4",
+    "postcss-preset-env": "^8.3.1",
+    "prettier": "^2.8.7",
+    "sass": "^1.62.0",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "typescript": "^5.0.4",
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.3",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router": "^6.10.0",
+    "react-router-dom": "^6.10.0"
+  }
+}
