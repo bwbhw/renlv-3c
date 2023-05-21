@@ -10,14 +10,14 @@
   },
   "husky": {
     "hooks": {
-        "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
     "*{.ts,.js}": [
-        "eslint --ext .tsx,.ts --fix ./src",
-        "prettier --write",
-        "git add"
+      "eslint --ext .tsx,.ts --fix ./src",
+      "prettier --write",
+      "git add"
     ]
   },
   "keywords": [
@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.4",
+    "antd": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",

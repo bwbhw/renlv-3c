@@ -10,12 +10,7 @@ const App: React.FC = () => {
     {
       path: '/home',
         element: <Home />,
-        children: [
-            {
-                path: "dashboard",
-                element: 
-          }
-      ]
+        children: []
     },
   ])
   return element
